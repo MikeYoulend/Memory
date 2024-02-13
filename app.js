@@ -53,6 +53,8 @@ cardArray.sort(() => 0.5 - Math.random()); //sort ordina l'array ma con math ran
 
 const gridDisplay = document.querySelector("#grid");
 
+const cardChosen = [];
+
 function createBoard() {
 	for (let i = 0; i < cardArray.length; i++) {
 		//parti da 0 e finchè i è minore di 10 incrementa di 1
@@ -67,6 +69,10 @@ function createBoard() {
 createBoard();
 
 function flipCard() {
-	let cardId = this.getAttribute("data-id");
-	console.log("clicked");
+	console.log(cardArray);
+	const cardId = this.getAttribute("data-id"); //prendi l'attributo di questo
+	cardChosen.push(cardArray[cardId].name); //pusha dentro cardChosen il nome della carta cliccata, gli passiamo l'id per capire qual è esattamente
+	console.log("clicked", cardId);
+	console.log(cardChosen);
+	this.setAttribute("src", cardArray[cardId].img);
 }
