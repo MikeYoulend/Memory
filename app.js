@@ -55,9 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	const gridDisplay = document.querySelector("#grid");
 	const resultDisplay = document.querySelector("#result");
 
-	let cardChosen = [];
-	let cardsChosenIds = [];
-	const cardsWon = [];
+	let cardChosen = []; //qui andranno le carte scelte, il nome
+	let cardsChosenIds = []; //qui andra l'id delle carte scelte
+	const cardsWon = []; //qui andranno le carte con lo stesso nome
 
 	function createBoard() {
 		for (let i = 0; i < cardArray.length; i++) {
@@ -88,27 +88,31 @@ document.addEventListener("DOMContentLoaded", () => {
 		const optioneTwoId = cardsChosenIds[1];
 
 		if (optioneOneId == optioneTwoId) {
+			//se l'id della carta è uguale allora...
 			alert("You have clicked the same image!");
 			cards[optioneOneId].setAttribute("src", "images/blank.png");
 			cards[optioneTwoId].setAttribute("src", "images/blank.png");
 		} else if (cardChosen[0] == cardChosen[1]) {
+			//senò vedi se il nome della carta è uguale alla seconda
 			alert("you found a match");
 			cards[optioneOneId].setAttribute("src", "images/white.png");
 			cards[optioneTwoId].setAttribute("src", "images/white.png");
 			cards[optioneOneId].removeEventListener("click", flipCard);
 			cards[optioneTwoId].removeEventListener("click", flipCard);
-			cardsWon.push(cardChosen);
+			cardsWon.push(cardChosen); //se è uguale push nelle carte scelte
 		} else {
+			//senò hai sbagliato e riprova
 			cards[optioneOneId].setAttribute("src", "images/blank.png");
 			cards[optioneTwoId].setAttribute("src", "images/blank.png");
 			alert("Sorry Try Again");
 		}
 
-		cardChosen = [];
-		cardsChosenIds = [];
-		resultDisplay.textContent = cardsWon.length;
+		cardChosen = []; //in qualsiasi caso svuota cardChosen
+		cardsChosenIds = []; //in qualsiasi caso svuota anche CardChosenIds
+		resultDisplay.textContent = cardsWon.length; //il contenuto dello span con result avrà la lunghezza dell'array delle carte corrette
 		if (cardsWon.length == cardArray.length / 2) {
-			resultDisplay.textContent = "Congratulations you found them all!";
+			//se la lunghezza di cardswon è uguale alle carte in totale diviso 2
+			resultDisplay.textContent = "Congratulations you found them all!"; //hai vinto
 		}
 	}
 });
