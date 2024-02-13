@@ -68,11 +68,18 @@ function createBoard() {
 
 createBoard();
 
+function checkMatch() {
+	console.log("check for match");
+	if (cardChosen[0] == cardChosen[1]) {
+		alert("you found a match");
+	}
+}
+
 function flipCard() {
-	console.log(cardArray);
 	const cardId = this.getAttribute("data-id"); //prendi l'attributo di questo
 	cardChosen.push(cardArray[cardId].name); //pusha dentro cardChosen il nome della carta cliccata, gli passiamo l'id per capire qual è esattamente
-	console.log("clicked", cardId);
-	console.log(cardChosen);
 	this.setAttribute("src", cardArray[cardId].img);
+	if (cardChosen.length === 2) {
+		setTimeout(checkMatch, 500); //è come Invoke in C#
+	}
 }
