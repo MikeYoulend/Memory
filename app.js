@@ -59,7 +59,7 @@ function createBoard() {
 		const card = document.createElement("img"); //creiamo un elemento img
 		card.setAttribute("src", "images/blank.png"); //a src gli diamo images...
 		card.setAttribute("data-id", i); //a data-id gli diamo i che andra da a 1 a 10
-		console.log(card, i);
+		gridDisplay.append(card);
 	}
 }
 
